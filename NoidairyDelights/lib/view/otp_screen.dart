@@ -3,6 +3,7 @@ import 'package:otp_screen/otp_screen.dart';
 import 'package:successivepoc/view/login.dart';
 
 import 'home.dart';
+import 'user_details.dart';
 
 class ValidateOTPScreen extends StatefulWidget {
   final String phoneNo;
@@ -40,6 +41,7 @@ class _ValidateOTPScreenState extends State<ValidateOTPScreen> {
   }
 
   void moveToNextScreen(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => InputUserDetails()));
   }
 }

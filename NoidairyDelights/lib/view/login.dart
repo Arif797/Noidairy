@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:successivepoc/controls/common_btn.dart';
 import '../helpers/constants.dart';
 import 'otp_screen.dart';
 
@@ -18,22 +20,17 @@ class _LoginScreenState extends State<LoginScreen> {
     var color = 0xff453658;
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Color(0xff392850),
-        title: Text(NOIDAIRY_DELIGHTS),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          color: Color(color),
+          color: Colors.cyan[100],
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height / 6,
+                height: MediaQuery.of(context).size.height / 8,
               ),
               Image.asset(
-                NOIDAIRY_BOY,
+                NOIDAIRY_LOGO,
                 width: 170,
               ),
               Container(
@@ -50,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextFormField(
+                              textInputAction: TextInputAction.done,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return INPUT_FIELD_REQUIRED;
@@ -58,13 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               keyboardType: TextInputType.number,
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                                  TextStyle(fontSize: 18, color: Colors.black),
                               controller: loginMobile,
                               decoration: InputDecoration(
                                   labelStyle: GoogleFonts.openSans(
                                       textStyle: TextStyle(
-                                          color: Color(0xffa29aac),
-                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.w600)),
                                   labelText: ENTER_MOBILE_NO,
                                   contentPadding: EdgeInsets.zero),
@@ -77,73 +75,51 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 20,
                             ),
                             // ignore: deprecated_member_use
-                            RaisedButton(
-                                onPressed: () {
-                                  String mobileNumber = loginMobile.text;
-                                  Pattern pattern =
-                                      r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                                  RegExp regex = RegExp(pattern);
-                                  print(regex.hasMatch(mobileNumber));
-                                  if (regex.hasMatch(mobileNumber) == false ||
-                                      loginMobile.text.length > 10 ||
-                                      loginMobile.text.length < 10) {
-                                    _scaffoldKey.currentState
-                                        // ignore: deprecated_member_use
-                                        .showSnackBar(SnackBar(
-                                      content: InkWell(
-                                          onTap: () {
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            LoginScreen()));
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                ENTER_VALID_NO,
-                                                style: GoogleFonts.openSans(
-                                                    textStyle: TextStyle(
-                                                        color:
-                                                            Color(0xffa29aac),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600)),
-                                              ),
-                                              Text(
-                                                'Okay',
-                                                style: TextStyle(
-                                                    color: Colors.blue,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )
-                                            ],
-                                          )),
-                                      duration: Duration(seconds: 3),
-                                    ));
-                                  } else {
-                                    String phoneNumber;
-                                    phoneNumber = loginMobile.text;
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ValidateOTPScreen(
-                                                    phoneNumber)));
-                                  }
-                                },
-                                color: Color(color),
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Text(SEND_OTP_BUTTON,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      )),
-                                )),
+                            CommonButton(
+                              onButtonPressed: () {
+                                String mobileNumber = loginMobile.text;
+                                Pattern pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                                RegExp regex = RegExp(pattern);
+                                print(regex.hasMatch(mobileNumber));
+                                if (regex.hasMatch(mobileNumber) == false ||
+                                    loginMobile.text.length > 10 ||
+                                    loginMobile.text.length < 10) {
+                                  _scaffoldKey.currentState
+                                      // ignore: deprecated_member_use
+                                      .showSnackBar(SnackBar(
+                                    content: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          ENTER_VALID_NO,
+                                          style: GoogleFonts.openSans(
+                                              textStyle: TextStyle(
+                                                  color: Color(0xffa29aac),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600)),
+                                        ),
+                                        Text(
+                                          'OK',
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                    duration: Duration(seconds: 3),
+                                  ));
+                                } else {
+                                  String phoneNumber;
+                                  phoneNumber = loginMobile.text;
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ValidateOTPScreen(phoneNumber)));
+                                }
+                              },
+                              buttonText: SEND_OTP_BUTTON,
+                            ),
                             SizedBox(
                               height: 50,
                             ),
@@ -154,17 +130,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Text("2019-2020 © Successive Technologies Pvt Ltd",
-                    style: GoogleFonts.openSans(
-                      textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600),
-                    )),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text("2020-2021 © NoidaDairy Delights Pvt Ltd",
+                      style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600),
+                      )),
+                ),
               ),
-              Expanded(child: Container())
             ],
           ),
         ),

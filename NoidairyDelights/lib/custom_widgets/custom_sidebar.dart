@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:successivepoc/controls/common_btn.dart';
 
 class CustomSidebarDrawer extends StatefulWidget {
   final Function drawerClose;
@@ -12,6 +14,7 @@ class CustomSidebarDrawer extends StatefulWidget {
 class _CustomSidebarDrawerState extends State<CustomSidebarDrawer> {
   @override
   Widget build(BuildContext context) {
+    var color = 0xff453658;
     MediaQueryData mediaQuery = MediaQuery.of(context);
     return Container(
       color: Colors.cyan[50],
@@ -27,19 +30,15 @@ class _CustomSidebarDrawerState extends State<CustomSidebarDrawer> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Image.asset(
-                    "assets/images/slogo.png",
-                    width: 80,
-                    height: 80,
+                    "assets/images/milk_logo.png",
+                    width: 100,
+                    height: 100,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Arif Ahmad',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text(
-                    "Software Developer",
+                    "Don't worry we are here!",
                     style: TextStyle(color: Colors.white),
                   ),
                   SizedBox(
@@ -47,49 +46,114 @@ class _CustomSidebarDrawerState extends State<CustomSidebarDrawer> {
                   )
                 ],
               )),
-          ListTile(
-            onTap: () {
-              debugPrint("About us");
-            },
-            title: Text(
-              "About",
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("About us");
-            },
-            title: Text(
-              "Services",
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Portfolio");
-            },
-            title: Text("Portfolio"),
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Blogs");
-            },
-            title: Text("Team Culture"),
-          ),
-          ListTile(
-            onTap: () {},
-            title: Text("Blogs"),
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Careers");
-            },
-            title: Text("Careers"),
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Tapped Log Out");
-            },
-            title: Text("Contact us"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Personal Info",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900)),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Name:",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Color(color),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600)),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Arif Ahmad",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Contact no.",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Color(color),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600)),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "+917007633714",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Address:",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Color(color),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600)),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Block J-212 \nSector 22, Noida",
+                  style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Align(
+                  alignment: Alignment.center,
+                  child: CommonButton(
+                    buttonText: "Edit Details",
+                    onButtonPressed: () {},
+                  ))
+            ]),
           ),
         ],
       ),
