@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:successivepoc/helpers/constants.dart';
 
 class GridDashboard extends StatelessWidget {
   final Items item1 = new Items(
@@ -9,13 +10,13 @@ class GridDashboard extends StatelessWidget {
       img: "assets/images/milk.png");
 
   final Items item2 = new Items(
-    title: "Milk Products",
+    title: MILK_PRODUCT,
     subtitle: "Dahi, Paneer and Buttermilk",
     event: "6 Items",
     img: "assets/images/todo.png",
   );
   final Items item3 = new Items(
-    title: "Urgent Deliveries",
+    title: "Urgent Deliveries ",
     subtitle: "Urgent needs of products",
     event: "18 Items",
     img: "assets/images/slogo.png",

@@ -1,5 +1,6 @@
 import 'package:successivepoc/custom_widgets/custom_sidebar.dart';
-import 'package:successivepoc/view/dashboard.dart';
+import 'package:successivepoc/helpers/constants.dart';
+import 'package:successivepoc/model/home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,47 +14,6 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   FSBStatus _fsbStatus;
-
-  final Items item1 = new Items(
-      title: "Calendar",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/images/calendar.png");
-
-  final Items item2 = new Items(
-    title: "Groceries",
-    subtitle: "Bocali, Apple",
-    event: "4 Items",
-    img: "assets/images/food.png",
-  );
-
-  final Items item3 = new Items(
-    title: "Locations",
-    subtitle: "E-29, Sector 11, Noida",
-    event: "",
-    img: "assets/images/images/map.png",
-  );
-
-  final Items item4 = new Items(
-    title: "Activity",
-    subtitle: "Rose favirited your Post",
-    event: "",
-    img: "assets/images/festival.png",
-  );
-
-  final Items item5 = new Items(
-    title: "To do",
-    subtitle: "Homework, Design",
-    event: "4 Items",
-    img: "assets/images/todo.png",
-  );
-
-  final Items item6 = new Items(
-    title: "Settings",
-    subtitle: "",
-    event: "2 Items",
-    img: "assets/images/setting.png",
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +63,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "NoiDairy Delights",
+                    NOIDAIRY_DELIGHTS,
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
                             color: Colors.black,
@@ -114,7 +74,7 @@ class _HomeState extends State<Home> {
                     height: 4,
                   ),
                   Text(
-                    "Dont worry we are here",
+                    NOIDAIRY_SLOGAN,
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
                             color: Color(0xffa29aac),
@@ -126,7 +86,7 @@ class _HomeState extends State<Home> {
               IconButton(
                 alignment: Alignment.topCenter,
                 icon: Image.asset(
-                  "assets/images/milk_logo.png",
+                  NOIDAIRY_BOY,
                   width: 280,
                   height: 400,
                 ),
@@ -148,12 +108,4 @@ class _HomeState extends State<Home> {
       ],
     );
   }
-}
-
-class Items {
-  String title;
-  String subtitle;
-  String event;
-  String img;
-  Items({this.title, this.subtitle, this.event, this.img});
 }

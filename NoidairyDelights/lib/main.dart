@@ -1,5 +1,6 @@
 import 'package:successivepoc/view/home.dart';
 import 'package:flutter/material.dart';
+import 'package:successivepoc/view/login.dart';
 
 void main() {
   runApp(NoidairyApp());
@@ -14,7 +15,7 @@ class NoidairyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: LoginScreen(),
     );
   }
 }

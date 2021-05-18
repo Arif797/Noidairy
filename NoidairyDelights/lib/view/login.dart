@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'home.dart';
+import '../helpers/constants.dart';
+import 'otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xff392850),
-        title: Text('NoiDairy Delights'),
+        title: Text(NOIDAIRY_DELIGHTS),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: MediaQuery.of(context).size.height / 6,
               ),
               Image.asset(
-                'assets/images/milk_logo.png',
+                NOIDAIRY_BOY,
                 width: 170,
               ),
               Container(
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter phone number!';
+                                  return INPUT_FIELD_REQUIRED;
                                 }
                                 return null;
                               },
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Color(0xffa29aac),
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600)),
-                                  labelText: 'Enter Mobile no.',
+                                  labelText: ENTER_MOBILE_NO,
                                   contentPadding: EdgeInsets.zero),
                             ),
                             SizedBox(
@@ -79,7 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             // ignore: deprecated_member_use
                             RaisedButton(
                                 onPressed: () {
-                                  if (loginMobile.text.length > 10 ||
+                                  String mobileNumber = loginMobile.text;
+                                  Pattern pattern =
+                                      r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                                  RegExp regex = RegExp(pattern);
+                                  print(regex.hasMatch(mobileNumber));
+                                  if (regex.hasMatch(mobileNumber) == false ||
+                                      loginMobile.text.length > 10 ||
                                       loginMobile.text.length < 10) {
                                     _scaffoldKey.currentState
                                         // ignore: deprecated_member_use
@@ -97,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'Enter valid Mobile number',
+                                                ENTER_VALID_NO,
                                                 style: GoogleFonts.openSans(
                                                     textStyle: TextStyle(
                                                         color:
@@ -118,9 +124,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       duration: Duration(seconds: 3),
                                     ));
                                   } else {
+                                    String phoneNumber;
+                                    phoneNumber = loginMobile.text;
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
-                                            builder: (context) => Home()));
+                                            builder: (context) =>
+                                                ValidateOTPScreen(
+                                                    phoneNumber)));
                                   }
                                 },
                                 color: Color(color),
@@ -129,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
-                                  child: Text("Send OTP",
+                                  child: Text(SEND_OTP_BUTTON,
                                       style: TextStyle(
                                         color: Colors.white,
                                       )),
